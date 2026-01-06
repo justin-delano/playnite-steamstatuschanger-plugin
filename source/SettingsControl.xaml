@@ -1,0 +1,219 @@
+﻿<UserControl x:Class="SteamStatusChanger.SettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localCommon="clr-namespace:SteamStatusChanger.Common"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <localCommon:ColorStringToBrushConverter x:Key="ColorStringToBrushConverter" />
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>   <!-- API key -->
+            <RowDefinition Height="Auto"/>   <!-- SteamID -->
+            <RowDefinition Height="Auto"/>   <!-- Poll interval -->
+            <RowDefinition Height="Auto"/>   <!-- Poll description -->
+            <RowDefinition Height="Auto"/>   <!-- Color header -->
+            <RowDefinition Height="Auto"/>   <!-- Color grid -->
+            <RowDefinition Height="*"/>      <!-- Spacer -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- API key -->
+        <TextBlock Text="{DynamicResource LOCSteamStatus_SteamWebApiKey}"
+                   Grid.Row="0" Grid.Column="0"
+                   Margin="0,0,6,6"
+                   VerticalAlignment="Center" />
+        <TextBox Grid.Row="0" Grid.Column="1"
+                 Margin="0,0,0,6"
+                 ToolTip="{DynamicResource LOCSteamStatus_GetApiKeyTooltip}"
+                 Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- SteamID -->
+        <TextBlock Text="{DynamicResource LOCSteamStatus_SteamID64}"
+                   Grid.Row="1" Grid.Column="0"
+                   Margin="0,0,6,6"
+                   VerticalAlignment="Center" />
+        <TextBox Grid.Row="1" Grid.Column="1"
+                 Margin="0,0,0,6"
+                 ToolTip="{DynamicResource LOCSteamStatus_SteamIdTooltip}"
+                 Text="{Binding SteamId, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- Poll interval -->
+        <TextBlock Text="{DynamicResource LOCSteamStatus_PollIntervalSeconds}"
+                   Grid.Row="2" Grid.Column="0"
+                   Margin="0,0,6,6"
+                   VerticalAlignment="Center" />
+        <TextBox Grid.Row="2" Grid.Column="1"
+                 Margin="0,0,0,6"
+                 Text="{Binding PollIntervalSeconds, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- Description -->
+        <TextBlock Grid.Row="3" Grid.ColumnSpan="2"
+                   Margin="0,8,0,0"
+                   TextWrapping="Wrap"
+                   Foreground="Gray"
+                   Text="{DynamicResource LOCSteamStatus_PollingDescription}" />
+
+        <!-- Color settings header -->
+        <TextBlock Text="{DynamicResource LOCSteamStatus_ColorSettings_Header}"
+                   Grid.Row="4" Grid.ColumnSpan="2"
+                   Margin="0,12,0,6"
+                   FontWeight="Bold" />
+
+        <!-- Color settings grid -->
+        <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="0,4,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>   <!-- Online -->
+                <RowDefinition Height="Auto"/>   <!-- Away -->
+                <RowDefinition Height="Auto"/>   <!-- Busy -->
+                <RowDefinition Height="Auto"/>   <!-- Invisible -->
+                <RowDefinition Height="Auto"/>   <!-- Offline -->
+                <RowDefinition Height="Auto"/>   <!-- Border -->
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />    <!-- Label -->
+                <ColumnDefinition Width="Auto" />    <!-- Color preview -->
+                <ColumnDefinition Width="150" />     <!-- sRGB/hex textbox -->
+                <ColumnDefinition Width="Auto" />    <!-- Pick button -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Online -->
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                       Margin="0,0,6,4"
+                       VerticalAlignment="Center"
+                       Text="{DynamicResource LOCSteamStatus_Color_Online}" />
+            <Rectangle Grid.Row="0" Grid.Column="1"
+                       Margin="0,0,6,4"
+                       Width="20" Height="20"
+                       VerticalAlignment="Center"
+                       Fill="{Binding OnlineColor, Converter={StaticResource ColorStringToBrushConverter}}"
+                       Stroke="Black" />
+            <TextBox Grid.Row="0" Grid.Column="2"
+                     Margin="0,0,6,4"
+                     VerticalAlignment="Center"
+                     Text="{Binding OnlineColor, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="0" Grid.Column="3"
+                    Margin="0,0,0,4"
+                    Content="Pick"
+                    ToolTip="{DynamicResource LOCSteamStatus_Color_PickButton_Tooltip}"
+                    Click="OnPickColor"
+                    Tag="Online" />
+
+            <!-- Away -->
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                       Margin="0,0,6,4"
+                       VerticalAlignment="Center"
+                       Text="{DynamicResource LOCSteamStatus_Color_Away}" />
+            <Rectangle Grid.Row="1" Grid.Column="1"
+                       Margin="0,0,6,4"
+                       Width="20" Height="20"
+                       VerticalAlignment="Center"
+                       Fill="{Binding AwayColor, Converter={StaticResource ColorStringToBrushConverter}}"
+                       Stroke="Black" />
+            <TextBox Grid.Row="1" Grid.Column="2"
+                     Margin="0,0,6,4"
+                     VerticalAlignment="Center"
+                     Text="{Binding AwayColor, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="1" Grid.Column="3"
+                    Margin="0,0,0,4"
+                    Content="Pick"
+                    ToolTip="{DynamicResource LOCSteamStatus_Color_PickButton_Tooltip}"
+                    Click="OnPickColor"
+                    Tag="Away" />
+
+            <!-- Busy -->
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       Margin="0,0,6,4"
+                       VerticalAlignment="Center"
+                       Text="{DynamicResource LOCSteamStatus_Color_Busy}" />
+            <Rectangle Grid.Row="2" Grid.Column="1"
+                       Margin="0,0,6,4"
+                       Width="20" Height="20"
+                       VerticalAlignment="Center"
+                       Fill="{Binding BusyColor, Converter={StaticResource ColorStringToBrushConverter}}"
+                       Stroke="Black" />
+            <TextBox Grid.Row="2" Grid.Column="2"
+                     Margin="0,0,6,4"
+                     VerticalAlignment="Center"
+                     Text="{Binding BusyColor, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="2" Grid.Column="3"
+                    Margin="0,0,0,4"
+                    Content="Pick"
+                    ToolTip="{DynamicResource LOCSteamStatus_Color_PickButton_Tooltip}"
+                    Click="OnPickColor"
+                    Tag="Busy" />
+
+            <!-- Invisible -->
+            <TextBlock Grid.Row="3" Grid.Column="0"
+                       Margin="0,0,6,4"
+                       VerticalAlignment="Center"
+                       Text="{DynamicResource LOCSteamStatus_Color_Invisible}" />
+            <Rectangle Grid.Row="3" Grid.Column="1"
+                       Margin="0,0,6,4"
+                       Width="20" Height="20"
+                       VerticalAlignment="Center"
+                       Fill="{Binding InvisibleColor, Converter={StaticResource ColorStringToBrushConverter}}"
+                       Stroke="Black" />
+            <TextBox Grid.Row="3" Grid.Column="2"
+                     Margin="0,0,6,4"
+                     VerticalAlignment="Center"
+                     Text="{Binding InvisibleColor, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="3" Grid.Column="3"
+                    Margin="0,0,0,4"
+                    Content="Pick"
+                    ToolTip="{DynamicResource LOCSteamStatus_Color_PickButton_Tooltip}"
+                    Click="OnPickColor"
+                    Tag="Invisible" />
+
+            <!-- Offline -->
+            <TextBlock Grid.Row="4" Grid.Column="0"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       Text="{DynamicResource LOCSteamStatus_Color_Offline}" />
+            <Rectangle Grid.Row="4" Grid.Column="1"
+                       Margin="0,0,6,0"
+                       Width="20" Height="20"
+                       VerticalAlignment="Center"
+                       Fill="{Binding OfflineColor, Converter={StaticResource ColorStringToBrushConverter}}"
+                       Stroke="Black" />
+            <TextBox Grid.Row="4" Grid.Column="2"
+                     Margin="0,0,6,0"
+                     VerticalAlignment="Center"
+                     Text="{Binding OfflineColor, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="4" Grid.Column="3"
+                    Content="Pick"
+                    ToolTip="{DynamicResource LOCSteamStatus_Color_PickButton_Tooltip}"
+                    Click="OnPickColor"
+                    Tag="Offline" />
+
+                <!-- Border -->
+                <TextBlock Grid.Row="5" Grid.Column="0"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       Text="{DynamicResource LOCSteamStatus_Color_Border}" />
+                <Rectangle Grid.Row="5" Grid.Column="1"
+                           Margin="0,0,6,0"
+                           Width="20" Height="20"
+                           VerticalAlignment="Center"
+                           Fill="{Binding BorderColor, Converter={StaticResource ColorStringToBrushConverter}}"
+                           Stroke="Black" />
+                <TextBox Grid.Row="5" Grid.Column="2"
+                     Margin="0,0,6,0"
+                     VerticalAlignment="Center"
+                     Text="{Binding BorderColor, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Grid.Row="5" Grid.Column="3"
+                    Content="Pick"
+                    ToolTip="{DynamicResource LOCSteamStatus_Color_PickButton_Tooltip}"
+                    Click="OnPickColor"
+                    Tag="Border" />
+        </Grid>
+    </Grid>
+</UserControl>

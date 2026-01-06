@@ -1,0 +1,42 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="LOCSteamStatus_SteamWebApiKey">Steam Web API key:</sys:String>
+    <sys:String x:Key="LOCSteamStatus_GetApiKeyTooltip">Get one from https://steamcommunity.com/dev/apikey</sys:String>
+    <sys:String x:Key="LOCSteamStatus_SteamID64">SteamID64:</sys:String>
+    <sys:String x:Key="LOCSteamStatus_SteamIdTooltip">Your 64-bit Steam ID, e.g. 7656119...</sys:String>
+    <sys:String x:Key="LOCSteamStatus_PollIntervalSeconds">Poll interval (seconds):</sys:String>
+    <sys:String x:Key="LOCSteamStatus_PollingDescription">Polling reads your current presence from Steam Web API (Online, Busy, Away, Offline). Status changes from the top-bar menu still use steam://friends/status/... URLs.</sys:String>
+
+    <sys:String x:Key="LOCSteamStatus_TopPanelTitle">Steam Status</sys:String>
+    <sys:String x:Key="LOCSteamStatus_SteamStatus_Format">Steam status: {0}</sys:String>
+
+    <sys:String x:Key="LOCSteamStatus_Menu_Online">Online</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Menu_Away">Away</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Menu_Busy">Busy</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Menu_Invisible">Invisible</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Menu_Offline">Offline</sys:String>
+
+    <sys:String x:Key="LOCSteamStatus_Error_CouldntOpenMenu">Couldn't open Steam status menu.</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Error_FailedToChange">Failed to change Steam status. Make sure Steam is installed, registered for steam:// links, and you are logged in.</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Error_Title">Steam Status</sys:String>
+
+    <sys:String x:Key="LOCSteamStatus_Verify_SteamIdNumeric">SteamID64 should be a numeric 64-bit ID.</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Verify_PollIntervalPositive">Poll interval must be a positive number of seconds.</sys:String>
+
+    <sys:String x:Key="LOCSteamStatus_ColorSettings_Header">Status Colors</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Color_Online">Online</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Color_Away">Away</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Color_Busy">Busy</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Color_Invisible">Invisible</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Color_Offline">Offline</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Color_Border">Border</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Color_PickButton_Tooltip">Pick a color</sys:String>
+
+    <!-- Internal log messages (not shown to users) -->
+    <sys:String x:Key="LOCSteamStatus_Log_ParseColorError">Failed to parse status color from settings; using defaults.</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Log_PollError">Error while polling Steam status.</sys:String>
+    <sys:String x:Key="LOCSteamStatus_Log_FetchError">Failed to fetch Steam status from Web API.</sys:String>
+
+</ResourceDictionary>

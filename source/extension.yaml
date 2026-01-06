@@ -1,0 +1,7 @@
+﻿Id: SteamStatusChanger
+Name: Steam Status Changer
+Author: Justin Delano
+Version: 1.0
+Module: SteamStatusChanger.dll
+Type: GenericPlugin
+Icon: icon.png
